@@ -8,7 +8,9 @@ services:
       - db-data:/var/lib/mongoDB
 
   app:
-    image: case_study_app
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports: 
       - "5000:5000"
     depends_on:
