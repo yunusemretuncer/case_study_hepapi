@@ -1,20 +1,20 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, IntegerField, SubmitField
+from wtforms import StringField, IntegerField, SubmitField
 
 class CreateTask(FlaskForm):
-    title = TextField('Task Title')
-    shortdesc = TextField('Short Description')
+    title = StringField('Task Title')
+    shortdesc = StringField('Short Description')
     priority = IntegerField('Priority')
     create = SubmitField('Create')
 
 class DeleteTask(FlaskForm):
-    key = TextField('Task ID')
-    title = TextField('Task Title')
+    key = StringField('Task ID')
+    title = StringField('Task Title')
     delete = SubmitField('Delete')
 
 class UpdateTask(FlaskForm):
-    key = TextField('Task Key')
-    shortdesc = TextField('Short Description')
+    key = StringField('Task Key')
+    shortdesc = StringField('Short Description')
     update = SubmitField('Update')
 
 class ResetTask(FlaskForm):
