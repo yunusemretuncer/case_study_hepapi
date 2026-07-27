@@ -8,7 +8,7 @@ app.config.update(dict(SECRET_KEY='yoursecretkey'))
 client = MongoClient('localhost:27017')
 db = client.TaskManager
 
-if db.settings.find({'name': 'task_id'}).count() <= 0:
+if db.settings.count_documents({'name': 'task_id'}) <= 0:
     print("task_id Not found, creating....")
     db.settings.insert_one({'name':'task_id', 'value':0})
 
