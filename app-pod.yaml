@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  containers:
+  - name: app
+    image: emret7/case_study_hepapi-app
+    ports:
+      - containerPort: 5000
+        name: app
