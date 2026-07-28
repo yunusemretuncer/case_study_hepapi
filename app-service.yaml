@@ -1,0 +1,13 @@
+apiversion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  type: NodePort
+  ports:  
+  - name: "app-service"
+    port: 5000
+    targetPort: 5000
+    nodePort: 31000
+  selector:
+    app: app
