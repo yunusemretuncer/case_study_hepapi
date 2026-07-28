@@ -2,8 +2,8 @@ services:
   db:
     image: mongo:latest
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - db-data:/var/lib/mongoDB
 
@@ -15,5 +15,7 @@ services:
       - "5000:5000"
     depends_on:
       - db
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
 volumes:
   db-data:
