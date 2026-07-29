@@ -21,3 +21,6 @@ spec:
         ports:
         - containerPort: 5000
           name: app
+        env:
+        - name: MONGODB_URI
+          value: "mongodb://root:example@db:27017/"
