@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    app: {{ .Values.db.name }}
+spec:
+  replicas: {{ .Values.db.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.db.name }}
+  template:
+    metadata:
+      name: db-pod
+      labels:
+        app: {{ .Values.db.name }}
+    spec:
+      containers:
+      - name: mongo
+        image: {{ .Values.db.image }}
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: {{ .Values.db.username }}
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: {{ .Values.db.password }}
+        ports:
+          - containerPort: 27017
+            name: mongo
