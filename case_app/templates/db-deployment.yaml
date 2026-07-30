@@ -27,7 +27,7 @@ spec:
           - containerPort: 27017
             name: mongo
         volumeMounts:
-          - mountPath: "/var/www/html"
+          - mountPath: "/data/db"
             name: mypd
       volumes:
         - name: mypd
