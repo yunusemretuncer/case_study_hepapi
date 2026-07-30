@@ -1,0 +1,12 @@
+api:
+  replicas: 2
+  name: api
+  image: emret7/case_study_hepapi-app
+  uri: "mongodb://root:example@db:27017/"
+
+db:
+  replicas: 1
+  name: db
+  image: mongo:latest
+  username: root
+  password: example
