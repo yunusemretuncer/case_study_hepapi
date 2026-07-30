@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 40s
     volumes:
-      - db-data:/var/lib/mongoDB
+      - db-data:/data/db
 
   app:
     build: 
