@@ -20,9 +20,15 @@ spec:
         image: {{ .Values.db.image }}
         env:
           - name: MONGO_INITDB_ROOT_USERNAME
-            value: {{ .Values.db.username }}
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: username
           - name: MONGO_INITDB_ROOT_PASSWORD
-            value: {{ .Values.db.password }}
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: password
         ports:
           - containerPort: 27017
             name: mongo
