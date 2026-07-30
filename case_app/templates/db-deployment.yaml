@@ -26,3 +26,10 @@ spec:
         ports:
           - containerPort: 27017
             name: mongo
+        volumeMounts:
+          - mountPath: "/data/db"
+            name: mypd
+      volumes:
+        - name: mypd
+          persistentVolumeClaim:
+            claimName: myclaim
