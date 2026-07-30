@@ -23,4 +23,7 @@ spec:
           name: {{ .Values.api.name }}
         env:
         - name: MONGODB_URI
-          value: {{ .Values.api.uri }}
+          valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: uri
