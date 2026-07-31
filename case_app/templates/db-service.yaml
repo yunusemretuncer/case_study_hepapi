@@ -6,7 +6,7 @@ spec:
   type: ClusterIP
   ports:  
   - name: "db-service"
-    port: 27017
-    targetPort: 27017
+    port: {{ .Values.db.port }}
+    targetPort: {{ .Values.db.port }}
   selector:
     app: {{ .Values.db.name }}
