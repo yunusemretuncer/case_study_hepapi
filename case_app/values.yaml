@@ -8,3 +8,4 @@ db:
   replicas: 1
   name: db
   image: mongo:latest
+  port: 27017
