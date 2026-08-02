@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata: 
-  name: myclaim
+  name: {{ .Release.Name }}-myclaim
 spec:
   accessModes:
   - ReadWriteOnce 

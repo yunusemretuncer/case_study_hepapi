@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: {{ .Release.Name }}-api-deployment
   labels:
     app: {{ .Values.api.name }}
 spec:
@@ -25,5 +25,5 @@ spec:
         - name: MONGODB_URI
           valueFrom:
               secretKeyRef:
-                name: db-secret
+                name: {{ .Release.Name }}-db-secret
                 key: uri
