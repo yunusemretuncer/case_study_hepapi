@@ -13,10 +13,13 @@ jobs:
             - name: Setup python
               uses: actions/checkout@v7
               with:
-                python-version: "3.10"
+                python-version: "3.12"
 
             - name: Install Dependencies
-              run: pip install -r requirements.txt
-            
+              run: |
+                pip install -r requirements.txt
+                pip install pytest
+              
+
             - name: test_script
               run: pytest
