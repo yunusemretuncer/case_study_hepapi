@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-deployment
+  name: {{ .Release.Name }}-db-deployment
   labels:
     app: {{ .Values.db.name }}
 spec:
@@ -22,12 +22,12 @@ spec:
           - name: MONGO_INITDB_ROOT_USERNAME
             valueFrom:
               secretKeyRef:
-                name: db-secret
+                name: {{ .Release.Name }}-db-secret
                 key: username
           - name: MONGO_INITDB_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: db-secret
+                name: {{ .Release.Name }}-db-secret
                 key: password
         ports:
           - containerPort: 27017
@@ -38,4 +38,4 @@ spec:
       volumes:
         - name: mypd
           persistentVolumeClaim:
-            claimName: myclaim
+            claimName: {{ .Release.Name }}-myclaim
