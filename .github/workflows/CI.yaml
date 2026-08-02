@@ -7,3 +7,16 @@ on:
 jobs:
     unit-testing:
         name: Unit Testing
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+            - uses: actions/checkout@v6
+
+            - name: Setup python
+            - uses: actions/checkout@v7
+
+            - name: Install Dependencies
+              run: pip install -r requirements.txt
+            
+            - name: test_script
+              run: pytest
