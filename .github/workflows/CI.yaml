@@ -1,0 +1,9 @@
+name: CI
+
+on:
+ push:
+   branches: ["main"]
+
+jobs:
+    unit-testing:
+        name: Unit Testing
