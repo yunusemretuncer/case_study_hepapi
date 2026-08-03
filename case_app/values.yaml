@@ -1,7 +1,8 @@
 api:
   replicas: 2
   name: api
-  image: emret7/case_study_hepapi-app
+  image: ghcr.io/yunusemretuncer/case_study_hepapi-app
+  tag: 428f0b80c874f7875203083a9924e2b94fb7061f
  
 
 db:

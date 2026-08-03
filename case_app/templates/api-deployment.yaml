@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.api.name }}
-        image: {{ .Values.api.image }}
+        image: "{{ .Values.api.image }}:{{ .Values.api.tag }}"
         ports:
         - containerPort: 5000
           name: {{ .Values.api.name }}
