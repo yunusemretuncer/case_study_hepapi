@@ -57,3 +57,31 @@ jobs:
             tags: |
               ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:latest
               ghcr.io/${{ github.repository_owner }}/case_study_hepapi-app:${{ github.sha }}
+
+    dev-deploy:
+      needs: docker
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repo
+          uses: actions/checkout@v6 
+        
+        - name: install kubectl
+          uses: azure/setup-kubectl@v4
+          with:
+            version: 'v1.36.1'
+
+        - name: setup kubeconfig file
+          uses: azure/k8s-set-context@v5
+          with:
+            method: kubeconfig
+            kubeconfig: {{ secrets.KUBECONFIG}}
+            context: <context name> # current-context from kubeconfig is used as default
+
+        - name: Fetch Kubernetes Cluster Details
+          run: |
+            kubectl version --short -o yaml
+            echo ----------------------------------------------
+            kubectt get nodes
+      
+
+          
