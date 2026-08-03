@@ -59,7 +59,6 @@ jobs:
               ghcr.io/${{ github.repository_owner }}/case_study_hepapi-app:${{ github.sha }}
 
     dev-deploy:
-      needs: docker
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repo
