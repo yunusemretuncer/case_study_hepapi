@@ -19,12 +19,20 @@ jobs:
           with:
             username: ${{ vars.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        
+
+        - name: Login to GHCR
+          uses: docker/login-action@v4
+          with:
+            registry: ghcr.io
+            username: ${{ github.reository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Docker Build
           uses: docker/build-push-action@v7
           with:
             push: false
-            tags: ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:latest
+            tags: ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:${{ github.sha}}
         
         - name: Docker image Testing
           run: |
@@ -32,9 +40,18 @@ jobs:
             docker run --name case_study_hepapi-app -d \
               --network host \
               -e MONGO_URI="mongodb://localhost:27017"/TaskManager \
-              ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:latest
+              ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:${{ github.sha}}
 
 
             sleep 10
             echo Testing Image URL using wget
             wget -q -O - 127.0.0.1:5000/
+
+        - name: Container Registry Push
+          uses: docker/build-push-action@v7
+          with:
+            context: .
+            push: true
+            tags: |
+              ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:latest
+              ghcr.io/${{ github.reository_owner }}/case_study_hepapi-app:${{ github.sha}}
