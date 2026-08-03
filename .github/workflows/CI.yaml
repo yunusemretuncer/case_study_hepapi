@@ -42,7 +42,7 @@ jobs:
             docker images
             docker run --name case_study_hepapi-app -d \
               --network host \
-              -e MONGO_URI="mongodb://localhost:27017/TaskManager" \
+              -e MONGODB_URI="mongodb://localhost:27017/TaskManager" \
               ${{ vars.DOCKERHUB_USERNAME }}/case_study_hepapi-app:${{ github.sha }}
 
 
