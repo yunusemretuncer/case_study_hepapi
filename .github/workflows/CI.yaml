@@ -5,6 +5,8 @@ on: push
 jobs:
     login:
       runs-on: ubuntu-latest
+      permissions:
+        packages: write
       services:
         mongodb:
           image: mongo:latest
