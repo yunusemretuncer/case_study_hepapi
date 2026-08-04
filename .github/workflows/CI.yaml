@@ -58,4 +58,14 @@ jobs:
             tags: ghcr.io/${{ github.repository_owner }}/case_study_hepapi-app:${{ github.sha }}
 
 
-          
+    dev-deploy:
+      runs-on: self-hosted
+
+      steps:
+        - name: Check Kubernetes
+          run: |
+            kubectl get nodes
+
+        - name: Check Helm
+          run: |
+            helm version     
