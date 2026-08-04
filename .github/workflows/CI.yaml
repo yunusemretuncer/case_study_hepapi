@@ -6,6 +6,7 @@ jobs:
     login:
       runs-on: ubuntu-latest
       permissions:
+        contents: read
         packages: write
       services:
         mongodb:
