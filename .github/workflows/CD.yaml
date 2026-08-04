@@ -33,5 +33,5 @@ jobs:
           kubectl get nodes
       - name: Helm Deployment
         run: |
-          helm upgrade --install ${{ github.event.inputs.HelmReleaseName }} /home/yunus/case_study/case_study_hepapi/case_app
+          helm upgrade --install ${{ github.event.inputs.HelmReleaseName }} /home/yunus/case_study/case_study_hepapi/case_app \
            --set api.tag=${{ inputs.imageVersion }}
