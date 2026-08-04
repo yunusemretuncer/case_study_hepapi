@@ -1,0 +1,37 @@
+name: CD 
+
+on: 
+  workflow_dispatch:
+    inputs:
+      imageVersion:
+        description: "Image version to deploy"
+        required: true
+      HelmReleaseName:
+        description: "Helm Release Name to deploy"
+        required: true
+
+jobs:
+  dev-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check Kubernetes
+        run: |
+          kubectl get nodes
+
+      - name: Check Helm
+        run: |
+          helm version 
+
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Fetch Kubernetes Cluster Details
+        run: |
+          kubectl version -o yaml
+          echo ----------------------------------------------
+          kubectl get nodes
+      - name: Helm Deployment
+        run: |
+          helm upgrade --install ${{ github.event.inputs.HelmReleaseName }} /home/yunus/case_study/case_study_hepapi/case_app
+           --set api.tag=${{ inputs.imageVersion }}
