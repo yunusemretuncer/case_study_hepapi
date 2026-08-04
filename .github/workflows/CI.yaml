@@ -69,4 +69,13 @@ jobs:
 
         - name: Check Helm
           run: |
-            helm version     
+            helm version 
+
+        - name: Checkout Repo
+          uses: actions/checkout@v6
+
+        - name: Fetch Kubernetes Cluster Details
+          run: |
+            kubectl version -o yaml
+            echo ----------------------------------------------
+            kubectl get nodes     
