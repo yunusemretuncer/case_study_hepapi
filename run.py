@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from classes import *
 import os
 
-
+#deneme 1 2 3
 # config system
 app = Flask(__name__)
 app.config.update(dict(SECRET_KEY='yoursecretkey'))
