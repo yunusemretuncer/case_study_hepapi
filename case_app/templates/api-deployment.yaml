@@ -21,10 +21,10 @@ spec:
         ports:
         - containerPort: 5000
           name: {{ .Values.api.name }}
-        livenessProbe:
+        readinessProbe:
           tcpSocket:
             port: 5000
-          initialDelaySeconds: 50
+          initialDelaySeconds: 30
           periodSeconds: 10
         env:
         - name: MONGODB_URI

@@ -32,10 +32,10 @@ spec:
         ports:
           - containerPort: 27017
             name: mongo
-        readinessProbe:
+        livenessProbe:
           tcpSocket:
             port: 27017
-          initialDelaySeconds: 50
+          initialDelaySeconds: 30
           periodSeconds: 10
         volumeMounts:
           - mountPath: "/data/db"
