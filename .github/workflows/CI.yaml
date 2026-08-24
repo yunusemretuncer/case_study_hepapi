@@ -3,7 +3,28 @@ name: CI
 on: push
 
 jobs:
+
+    unit-testing:
+        name: Unit Testing
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v6
+
+            - name: Setup python
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.12"
+
+            - name: Install Dependencies
+              run: |
+                pip install -r requirements.txt
+                pip install pytest
+              
+            - name: Test with pytest
+              run: pytest
     login:
+      needs: unit-testing
       runs-on: ubuntu-latest
       permissions:
         contents: read

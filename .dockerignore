@@ -4,3 +4,5 @@ __pycache__/
 README.md
 .dockerignore
 .git
+.env
+Run_minikube_on_wsl.md

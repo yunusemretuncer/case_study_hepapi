@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: {{ .Release.Name }}-db
+
+spec:
+  serviceName: {{ .Release.Name }}-db
+  replicas: {{ .Values.db.replicas }}
+
+  selector:
+    matchLabels:
+      app: {{ .Values.db.name }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.db.name }}
+
+    spec:
+      containers:
+        - name: mongo
+          image: {{ .Values.db.image }}
+
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-db-secret
+                  key: username
+
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-db-secret
+                  key: password
+
+          ports:
+            - containerPort: 27017
+              name: mongo
+
+          livenessProbe:
+            tcpSocket:
+              port: 27017
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

@@ -10,3 +10,5 @@ db:
   name: db
   image: mongo:latest
   port: 27017
+  user: root
+  password: example
