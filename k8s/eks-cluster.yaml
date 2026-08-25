@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: flask-cluster
+  region: eu-central-1
+  version: "1.34"
+
+managedNodeGroups:
+  - name: app-nodes
+    instanceType: t3.small
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 2

@@ -1,0 +1,11 @@
+app:
+  image: 005311909309.dkr.ecr.eu-central-1.amazonaws.com/flask-task-manager:latest
+ 
+
+db:
+  replicas: 1
+  name: db
+  image: mongo:latest
+  port: 27017
+  user: root
+  password: example
